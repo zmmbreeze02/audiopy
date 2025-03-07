@@ -105,6 +105,10 @@ def main():
     draw("sine_wave_1000fs_1000n_100hz_[100-200]", t, signal, fs)
     draw("sine_wave_1000fs_1000n_100hz_[100-200]_no_window", t, signal, fs, False)
 
+    signal = np.sin(2 * np.pi * f * t)
+    signal[98:198] = 0
+    draw("sine_wave_1000fs_1000n_100hz_[98-198]_no_window", t, signal, fs, False)
+
     signal[0:1000] = 1
     draw("1_1000fs_1000n_100hz_no_window", t, signal, fs, False)
 
@@ -119,6 +123,10 @@ def main():
     signal[0:1000] = 1
     signal[100:200] = 0
     draw("1_1000fs_1000n_100hz_[100-200]_no_window", t, signal, fs, False)
+
+    signal[0:1000] = 1
+    signal[75:175] = 0
+    draw("1_1000fs_1000n_100hz_[75-175]_no_window", t, signal, fs, False)
 
     signal[0:1000] = 1
     signal[100:300] = 0
@@ -139,6 +147,38 @@ def main():
     signal[0:1000] = 1
     signal[0:100] = -1
     draw("sgn-100_1000fs_1000n_100hz_no_window", t, signal, fs, False)
+
+    signal[0:1000] = 0
+    signal[100:200] = 1
+    draw("1_1000fs_1000n_100hz_[0-100,200-1000]_no_window", t, signal, fs, False)
+
+    signal[0:1000] = 0
+    signal[100:900] = 1
+    draw("1_1000fs_1000n_100hz_[0-100,900-1000]_no_window", t, signal, fs, False)
+
+
+    # 参数设置
+    fs = 48000  # 采样率 (Hz)
+    n_samples = 48000  # 采样点数
+    f = 100  # 信号频率 (Hz)
+    # 时间轴
+    t = np.linspace(0, (n_samples - 1) / fs, n_samples)
+    # 创建正弦波信号
+    signal = np.sin(2 * np.pi * f * t)
+    # 设置 [4800, 9600) 范围内的采样值为 0
+    signal[4800:9600] = 0
+    draw("sine_wave_48000fs_48000n_100hz_[4800-9600]_no_window", t, signal, fs, False)
+
+
+    # 参数设置
+    fs = 48000  # 采样率 (Hz)
+    n_samples = 48000  # 采样点数
+    f = 10000  # 信号频率 (Hz)
+    # 时间轴
+    t = np.linspace(0, (n_samples - 1) / fs, n_samples)
+    # 创建正弦波信号
+    signal = 0.01 * np.sin(2 * np.pi * f * t)
+    draw("sine_wave_48000fs_48000n_10000hz_no_window", t, signal, fs, False)
 
 if __name__ == "__main__":
     main()
