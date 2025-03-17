@@ -109,6 +109,16 @@ def main():
     signal[98:198] = 0
     draw("sine_wave_1000fs_1000n_100hz_[98-198]_no_window", t, signal, fs, False)
 
+    signal = np.sin(2 * np.pi * f * t)
+    signal[0:102] = 0
+    signal[202:1000] = 0
+    draw("sine_wave_1000fs_1000n_100hz_[0-102,202-1000]_no_window", t, signal, fs, False)
+
+    signal = np.sin(2 * np.pi * f * t)
+    signal[0:100] = 0
+    signal[200:1000] = 0
+    draw("sine_wave_1000fs_1000n_100hz_[0-100,200-1000]_no_window", t, signal, fs, False)
+
     signal[0:1000] = 1
     draw("1_1000fs_1000n_100hz_no_window", t, signal, fs, False)
 
@@ -179,6 +189,12 @@ def main():
     # 创建正弦波信号
     signal = 0.01 * np.sin(2 * np.pi * f * t)
     draw("sine_wave_48000fs_48000n_10000hz_no_window", t, signal, fs, False)
+
+    print("50 * np.sinc(0.1)=", 50 * np.sinc(0.1))
+    print("50 * np.sinc(0.1*2)=", 50 * np.sinc(0.1*2))
+    print("50 * np.sinc(-0.1)=", 50 * np.sinc(-0.1))
+    print("50 * np.sinc(-0.1*2)=", 50 * np.sinc(-0.1*2))
+
 
 if __name__ == "__main__":
     main()
